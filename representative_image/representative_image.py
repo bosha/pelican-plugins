@@ -1,7 +1,7 @@
 import six
 from pelican import signals
 from pelican.contents import Article, Draft, Page
-from pelican.generators import ArticlesGenerator
+from pelican.generators import ArticlesGenerator, PagesGenerator
 from bs4 import BeautifulSoup
 
 
@@ -39,6 +39,10 @@ def run_plugin(generators):
         if isinstance(generator, ArticlesGenerator):
             for article in generator.articles:
                 images_extraction(article)
+        if isinstance(generator, PagesGenerator):
+            for page in generator.pages:
+                images_extraction(page)
+                
 
 
 def register():
